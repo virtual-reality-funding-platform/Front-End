@@ -18,11 +18,14 @@ export const DELETING_USERS = 'DELETING_USERS ';
 export const DELETING_SUCCESS = 'DELETING_SUCCESS';
 export const DELETING_FAILURE = 'DELETING_FAILURE';
 
-export const login = (username, password) => dispatch => {
+export const login = (username, password, history) => dispatch => {
     const credentials = { username, password };
     axios.post('https://vrfp.herokuapp.com/auth/login', credentials)
       .then(res => {
         localStorage.setItem('token', res.data.token);
+        if (localStorage.getItem('token')) {
+          history.history.push('/users')
+          }
       })
       .catch(res => {
         console.log('AUTH FAILED!!!');

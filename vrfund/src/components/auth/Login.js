@@ -9,10 +9,8 @@ export class Login extends React.Component {
   onLogin = () => {
     const username = this.userRef.current.value;
     const password = this.passRef.current.value;
-
-    this.props.login(username, password);
+    this.props.login(username, password, this.props);
   }
-
   render() {
     return (
       <div>
