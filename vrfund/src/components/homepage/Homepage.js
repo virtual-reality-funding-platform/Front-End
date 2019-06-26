@@ -9,16 +9,19 @@ export class Homepage extends Component {
   }
   render() {
     return (
-      <div>
-        <h1>Home page where users get to see all projects</h1>
+      <div className="home-projects-list">
+        <h1>Homepage where users get to see all projects</h1>
+
+        <br/>
+        <br/>
 
         {this.props.projectsList.map(project => {
           return (
             <div key={project.id}>
-              project Name: {project.projectName} <br/>
+              <h3>Name: {project.projectName} </h3><br/>
               Type: {project.projectType} <br/>
               Description: {project.description} <br/>
-              Fund Amount: {project.fundingAmount} <br/>
+              Fund Amount: {project.fundingAmount} <br/><br/>
             </div>
           );
         })}
