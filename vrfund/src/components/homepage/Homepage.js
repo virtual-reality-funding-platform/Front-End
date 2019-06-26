@@ -1,7 +1,8 @@
-
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchProjects } from "../../actions";
+import NavBar from './NavBar';
+import Footer from './Footer';
 
 export class Homepage extends Component {
   componentDidMount() {
@@ -9,22 +10,23 @@ export class Homepage extends Component {
   }
   render() {
     return (
-      <div className="home-projects-list">
-        <h1>Homepage where users get to see all projects</h1>
-
-        <br/>
-        <br/>
-
-        {this.props.projectsList.map(project => {
-          return (
-            <div key={project.id}>
-              <h3>Name: {project.projectName} </h3><br/>
-              Type: {project.projectType} <br/>
-              Description: {project.description} <br/>
-              Fund Amount: {project.fundingAmount} <br/><br/>
-            </div>
-          );
-        })}
+      <div>
+        <NavBar />
+        <div className="home-projects-list">
+          {this.props.projectsList.map(project => {
+            return (
+              <div key={project.id}>
+                <h3>{project.projectName} </h3>
+                <br />
+                Type: {project.projectType} <br />
+                Description: {project.description} <br />
+                Fund Amount: {project.fundingAmount} <br />
+                <br />
+              </div>
+            );
+          })}
+        </div>
+        <Footer />
       </div>
     );
   }
