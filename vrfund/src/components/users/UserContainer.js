@@ -1,13 +1,40 @@
 import React, { Component } from 'react'
+import NavBar from './NavBar';
+import { Route } from "react-router-dom";
+import UserProjects from './UserProjects';
+import UserProjectForm from './UserProjectForm';
+import EditProjects from './EditProjects';
+import ProjectForm from '../Project/ProjectForm'
 
+ 
 export class UserContainer extends Component {
     render() {
         return (
-            <div>
-                <h1>This is the user page container, for logged in users only(protected), other components in the user folder are to go in here </h1>
-            </div>
-        )
+            <>
+              <NavBar />
+              <ProjectForm />
+              <Route
+                path="/"
+                render={props => {
+                  return (
+                    <UserProjects
+                    />
+                  );
+                }}
+              />
+      
+              <Route
+                path="projects/add"
+                render={props => (
+                  <UserProjectForm />
+                )}
+              />
+      
+      <Route exact path='/projects/edit/:id' component={EditProjects}></Route>
+
+            </>
+          );
     }
 }
 
-export default UserContainer
+export default UserContainer;
