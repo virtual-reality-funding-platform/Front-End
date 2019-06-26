@@ -6,12 +6,14 @@ export class ProjectForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      id: "",
       projectName: "",
       projectType: "",
       description: "",
       fundingAmount: ""
     };
   }
+
 
   handlerChange = event => {
     this.setState({ [event.target.id]: event.target.value });

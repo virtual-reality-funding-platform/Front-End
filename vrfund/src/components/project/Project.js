@@ -1,4 +1,6 @@
 import React from "react";
+// import { Link } from 'react-router-dom';
+
 const Project = props => {
   return (
     <div>
@@ -9,15 +11,8 @@ const Project = props => {
         <strong>{props.data.fundingAmount}</strong>
       </div>
       <div>
-        <button
-          onClick={() => this.props.history.push(`/remove/${props.data.id}`)}
-        >
+        <button onClick={(event)=>{props.handlerDelete(event,props.data.id)}}>
           Remove
-        </button>
-        <button
-          onClick={() => this.props.history.push(`/update/${props.data.id}`)}
-        >
-          Update
         </button>
       </div>
     </div>

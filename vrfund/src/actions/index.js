@@ -39,12 +39,16 @@ export const FETCHING_USERS_PROJECTS = 'FETCHING_PROJECTS';
 export const FETCHING_USERS_PROJECTS_SUCCESS = 'FETCHING_PROJECTS_SUCCESS';
 export const FETCHING_USERS_PROJECTS_FAILURE = 'FETCHING_PROJECTS_FAILURE';
 
+export const GET_USER_ID  = 'GET_USER_ID';
+
 
 export const login = (username, password, history) => dispatch => {
     const credentials = { username, password };
     axios.post('https://vrfp.herokuapp.com/auth/login', credentials)
       .then(res => {
         localStorage.setItem('token', res.data.token);
+        localStorage.setItem('userId', res.data.user.id);
+        console.log(res.data.user.id);
         if (localStorage.getItem('token')) {
           history.history.push('/users')
           }
@@ -115,7 +119,7 @@ export const fetchUsers = () => dispatch => {
 
   export const fetchUsersProjects = (id) => dispatch => {
     dispatch({ type: FETCHING_USERS_PROJECTS  });
-    axiosImproved().get(`https://vrfp.herokuapp.com/users/${id}/Project`)
+    axiosImproved().get(`https://vrfp.herokuapp.com/users/${id}/projects`)
       .then(response => {
         dispatch({ type: FETCHING_USERS_PROJECTS_SUCCESS, payload: response.data});
       })
@@ -142,6 +146,7 @@ export const fetchUsers = () => dispatch => {
     axiosImproved().post('https://vrfp.herokuapp.com/projects',newProject)
       .then(response => {
         dispatch({ type: ADDING_PROJECTS_SUCCESS, payload: response.data});
+        localStorage.setItem('userId', response.data.user.id);
       })
       .catch(error => {
         dispatch({ type: ADDING_PROJECTS_FAILURE, payload: error });
@@ -164,9 +169,9 @@ export const fetchUsers = () => dispatch => {
   
   export const deleteProject = (id) => dispatch => {
     dispatch({ type: DELETING_PROJECTS });
-    axiosImproved().delete(`https://vrfp.herokuapp.com/users/${id}`)
+    axiosImproved().delete(`https://vrfp.herokuapp.com/projects/${id}`)
       .then(response => {
-        dispatch({ type: DELETING_PROJECTS_FAILURE, payload: response.data});
+        dispatch({ type: DELETING_PROJECTS_SUCCESS, payload: response.data});
       })
       .catch(error => {
         dispatch({ type: DELETING_PROJECTS_FAILURE, payload: error });

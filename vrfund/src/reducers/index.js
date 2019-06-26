@@ -63,9 +63,9 @@ export const UsersReducer = (state = initialState, action) => {
     case types.EDITING_PROJECTS:
       return { ...state, updatingProjects: true };
     case types.EDITING_PROJECTS_SUCCESS:
-      return { ...state, projects: action.payload, addingProjects: false };
+      return { ...state, projects: action.payload, updatingProjects: false };
     case types.EDITING_PROJECTS_FAILURE:
-      return { ...state, addingProjects: false };
+      return { ...state, updatingProjects: false };
     case types.FETCHING_USERS_PROJECTS:
       return { ...state, fetchingUsersProjects: true };
     case types.FETCHING_USERS_PROJECTS_SUCCESS:
