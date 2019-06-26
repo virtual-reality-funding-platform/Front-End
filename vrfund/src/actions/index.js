@@ -55,7 +55,6 @@ export const login = (username, password, history) => dispatch => {
       })
       .catch(res => {
         console.log('AUTH FAILED!!!');
-        
       })
   };
 export const fetchUsers = () => dispatch => {
