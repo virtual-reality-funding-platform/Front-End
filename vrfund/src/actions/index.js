@@ -56,7 +56,7 @@ export const fetchUsers = () => dispatch => {
 
     dispatch({ type: EDITING_USERS });
   
-    axiosImproved().put(`https://vrfp.herokuapp.com/users{id}`,data)
+    axiosImproved().put(`https://vrfp.herokuapp.com/users${id}`,data)
       .then(response => {
         dispatch({ type: EDITING_SUCCESS, payload: response.data});
       })
