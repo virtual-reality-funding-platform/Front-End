@@ -3,7 +3,6 @@ import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 
 
-
 export class UserProject extends Component {
   render() {
     return (
@@ -14,11 +13,11 @@ export class UserProject extends Component {
           <strong>{this.props.data.projectType}</strong> <br />
           <strong>{this.props.data.description}</strong> <br />
           <strong>{this.props.data.fundingAmount}</strong> <br/>
-          <button onClick={(event)=>{this.props.handlerDelete(event,this.props.data.id)}}>Delete</button>
+          <button onClick={(event)=>{this.props.handlerDelete(event,this.props.data.id)}}>Delete</button> <br />
+          <Link to={`/projects/edit/${this.props.data.id}`}>Edit</Link>
         </div>
         <div>
-        <Link to={`/projects/edit/${this.props.data.id}`}>Edit</Link>
-        </div>                                                                                                                                                                                                                                                                                                                                                                                                      
+        </div>
       </div>
     );
   }

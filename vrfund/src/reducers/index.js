@@ -2,6 +2,7 @@ import * as types from "../actions";
 
 const initialState = {
   users: [],
+  user: [],
   fetchingUsers: false,
   addingUsers: false,
   updatingUsers: false,
@@ -18,6 +19,12 @@ const initialState = {
 
 export const UsersReducer = (state = initialState, action) => {
   switch (action.type) {
+    case types.FETCHING_A_USER:
+      return { ...state, fetchingUsers: true };
+    case types.FETCHING_A_USER_SUCCESS:
+      return { ...state, user: action.payload, fetchingUsers: false };
+    case types.FETCHING_A_USER_FAILURE:
+      return { ...state, fetchingUsers: false };
     case types.FETCHING_USERS:
       return { ...state, fetchingUsers: true };
     case types.FETCHING_SUCCESS:
