@@ -2,32 +2,30 @@ import React from "react";
 import { editProject } from "../../actions";
 import { connect } from "react-redux";
 
-class ProjectEdits extends React.Component {
+class EditProjects extends React.Component {
   constructor(props) {
     super(props);
-    this.formSubmit = this.formSubmit.bind(this);
-    this.handleFieldChange = this.handleFieldChange.bind(this);
     this.state = {
-      id: this.props.id,
+      id: this.props.project.id,
       projectName: this.props.project.projectName,
       projectType: this.props.project.projectType,
       description: this.props.project.description,
       fundingAmount: this.props.project.fundingAmount
     };
   }
-  handleFieldChange(event) {
+  handleFieldChange = (event) => {
     this.setState({ [event.target.id]: event.target.value });
   }
-  formSubmit(event) {
+  formSubmit = (event) => {
     event.preventDefault();
-    this.props.editSmurf(this.state.Id, {
+    this.props.editProject(this.state.id, {
       projectName: this.state.projectName,
       projectType: this.state.projectType,
       description: this.state.description,
       fundingAmount: this.state.fundingAmount
     });
     this.setState({
-      Id: "",
+      id:'',
       projectName: "",
       projectType: "",
       description: "",
@@ -75,8 +73,7 @@ class ProjectEdits extends React.Component {
 const mapStateToProps = (state, ownProps) => {
   return {
     id: ownProps.match.params.id,
-    project:
-      state.projects.find(project => ownProps.match.params.id === project.id) ||
+    project:state.projects.find(project => ownProps.match.params.id === project.id) ||
       null
   };
 };
@@ -84,4 +81,4 @@ const mapStateToProps = (state, ownProps) => {
 export default connect(
   mapStateToProps,
   { editProject }
-)(ProjectEdits);
+)(EditProjects);
