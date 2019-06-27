@@ -3,7 +3,9 @@ import { connect } from "react-redux";
 import { fetchProjects } from "../../actions";
 import NavBar from './NavBar';
 import Footer from './Footer';
-import UserForm from '../../components/Users/UserForm';
+import UserForm from '../Users/UserForm';
+
+
 export class Homepage extends Component {
   componentDidMount() {
     this.props.fetchProjects();
