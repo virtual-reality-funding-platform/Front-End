@@ -35,9 +35,9 @@ export const DELETING_PROJECTS = 'DELETING_PROJECTS ';
 export const DELETING_PROJECTS_SUCCESS = 'DELETING_PROJECTS_SUCCESS';
 export const DELETING_PROJECTS_FAILURE = 'DELETING_PROJECTS_FAILURE';
 
-export const FETCHING_USERS_PROJECTS = 'FETCHING_PROJECTS';
-export const FETCHING_USERS_PROJECTS_SUCCESS = 'FETCHING_PROJECTS_SUCCESS';
-export const FETCHING_USERS_PROJECTS_FAILURE = 'FETCHING_PROJECTS_FAILURE';
+export const FETCHING_USERS_PROJECTS = 'FETCHING_USERS_PROJECTS';
+export const FETCHING_USERS_PROJECTS_SUCCESS = 'FETCHING_USERS_PROJECTS_SUCCESS';
+export const FETCHING_USERS_PROJECTS_FAILURE = 'FETCHING_USERS_PROJECTS_FAILURE';
 
 export const GET_USER_ID  = 'GET_USER_ID';
 
@@ -121,6 +121,7 @@ export const fetchUsers = () => dispatch => {
     dispatch({ type: FETCHING_USERS_PROJECTS  });
     axiosImproved().get(`https://vrfp.herokuapp.com/users/${id}/projects`)
       .then(response => {
+        console.log(response.data);
         dispatch({ type: FETCHING_USERS_PROJECTS_SUCCESS, payload: response.data});
       })
       .catch(error => {

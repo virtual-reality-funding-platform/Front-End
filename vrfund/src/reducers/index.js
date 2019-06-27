@@ -69,7 +69,7 @@ export const UsersReducer = (state = initialState, action) => {
     case types.FETCHING_USERS_PROJECTS:
       return { ...state, fetchingUsersProjects: true };
     case types.FETCHING_USERS_PROJECTS_SUCCESS:
-      return { ...state, usersProject: action.payload, fetchingUsers: false };
+      return { ...state, usersProjects: action.payload, fetchingUsers: false };
     case types.FETCHING_USERS_PROJECTS_FAILURE:
       return { ...state, fetchingUsersProjects: false };
     default:
