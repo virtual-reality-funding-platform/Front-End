@@ -3,7 +3,7 @@ import NavBar from "./NavBar";
 import { Route } from "react-router-dom";
 import UserProjects from "./UserProjects";
 import EditProjects from "./EditProjects";
-import ProjectForm from "../Project/ProjectForm";
+import ProjectForm from "../project/ProjectForm";
 import User from "./User";
 
 export class UserContainer extends Component {
