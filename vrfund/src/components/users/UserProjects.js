@@ -8,15 +8,20 @@ export class UserProjects extends Component {
         const id  = localStorage.getItem('userId')
         this.props.fetchUsersProjects(id);
       }
+
+      handlerDelete = (event,id) =>{
+        event.preventDefault();
+        this.props.deleteProject(id);
+    }
       render() {
         return (
           <div>
-            {this.props.userProject.map(project => {
+            {this.props.projectsByUser.map(project => {
               return (
                 <UserProject
                   key={project.id}
                   data={project}
-                  deleteProject={this.deleteProject}
+                  handlerDelete={this.handlerDelete}
                 />
               );
             })}
@@ -28,7 +33,7 @@ export class UserProjects extends Component {
 
 const mapStateToProps = (state )=> {
     return {
-        userProject: state.projects
+        projectsByUser: state.usersProjects,
     };
   };
   

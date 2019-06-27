@@ -2,6 +2,10 @@ import axios from 'axios';
 import axiosImproved from '../axios';
 
 
+export const FETCHING_A_USER = 'FETCHING_A_USER';
+export const FETCHING_A_USER_SUCCESS = 'FETCHING_A_USER_SUCCESS';
+export const FETCHING_A_USER_FAILURE = 'FETCHING_A_USER_FAILURE ';
+
 export const FETCHING_USERS = 'FETCHING_USERS';
 export const FETCHING_SUCCESS = 'FETCHING_SUCCESS';
 export const FETCHING_FAILURE = 'FETCHING_FAILURE';
@@ -35,9 +39,9 @@ export const DELETING_PROJECTS = 'DELETING_PROJECTS ';
 export const DELETING_PROJECTS_SUCCESS = 'DELETING_PROJECTS_SUCCESS';
 export const DELETING_PROJECTS_FAILURE = 'DELETING_PROJECTS_FAILURE';
 
-export const FETCHING_USERS_PROJECTS = 'FETCHING_PROJECTS';
-export const FETCHING_USERS_PROJECTS_SUCCESS = 'FETCHING_PROJECTS_SUCCESS';
-export const FETCHING_USERS_PROJECTS_FAILURE = 'FETCHING_PROJECTS_FAILURE';
+export const FETCHING_USERS_PROJECTS = 'FETCHING_USERS_PROJECTS';
+export const FETCHING_USERS_PROJECTS_SUCCESS = 'FETCHING_USERS_PROJECTS_SUCCESS';
+export const FETCHING_USERS_PROJECTS_FAILURE = 'FETCHING_USERS_PROJECTS_FAILURE';
 
 export const GET_USER_ID  = 'GET_USER_ID';
 
@@ -69,6 +73,20 @@ export const fetchUsers = () => dispatch => {
   };
 
 
+
+  export const fetchAUser = (id) => dispatch => {
+    dispatch({ type: FETCHING_A_USER  });
+    axiosImproved().get(`https://vrfp.herokuapp.com/users/${id}`)
+      .then(response => {
+        console.log("hi",response.data);
+        dispatch({ type: FETCHING_A_USER_SUCCESS, payload: response.data});
+      })
+      .catch(error => {
+        dispatch({ type: FETCHING_A_USER_FAILURE, payload: error });
+    });
+  };
+
+
   export const fetchUser = (id) => dispatch => {
     dispatch({ type: FETCHING_USERS  });
     axiosImproved().get(`https://vrfp.herokuapp.com/users/${id}`)
@@ -80,11 +98,16 @@ export const fetchUsers = () => dispatch => {
     });
   };
   
-  export const addingUser = (newUser) => dispatch => {
+  export const addingUser = (newUser, history) => dispatch => {
     dispatch({ type: ADDING_USERS });
     axiosImproved().post('https://vrfp.herokuapp.com/auth/register',newUser)
       .then(response => {
         dispatch({ type: ADDING_SUCCESS, payload: response.data});
+        localStorage.setItem('token', response.data.token);
+        localStorage.setItem('userId', response.data.user.id);
+        if (localStorage.getItem('token')) {
+          history.history.push('/users')
+          }
       })
       .catch(error => {
         dispatch({ type: ADDING_FAILURE, payload: error });
@@ -121,6 +144,7 @@ export const fetchUsers = () => dispatch => {
     dispatch({ type: FETCHING_USERS_PROJECTS  });
     axiosImproved().get(`https://vrfp.herokuapp.com/users/${id}/projects`)
       .then(response => {
+        console.log(response.data);
         dispatch({ type: FETCHING_USERS_PROJECTS_SUCCESS, payload: response.data});
       })
       .catch(error => {
@@ -158,7 +182,7 @@ export const fetchUsers = () => dispatch => {
 
     dispatch({ type: EDITING_PROJECTS });
   
-    axiosImproved().put(`https://vrfp.herokuapp.com/users{id}`,data)
+    axiosImproved().put(`https://vrfp.herokuapp.com/projects/${id}`,data)
       .then(response => {
         dispatch({ type: EDITING_PROJECTS_SUCCESS, payload: response.data});
       })
