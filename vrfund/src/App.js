@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import UserContainer from "./components/Users/UserContainer";
+import UserContainer from "./components/users/UserContainer";
 import Homepage from "./components/Homepage/Homepage";
 import Login from './components/Auth/Login';
 import { BrowserRouter, Route, Redirect } from "react-router-dom";
