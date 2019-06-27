@@ -1,7 +1,7 @@
 
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { addingProject } from "../../actions";
+import { addingProject, fetchUsersProjects } from "../../actions";
 
 export class ProjectForm extends Component {
   constructor(props) {
@@ -11,10 +11,17 @@ export class ProjectForm extends Component {
       projectName: "",
       projectType: "",
       description: "",
-      fundingAmount: ""
+      fundingAmount: "",
+      user_id: ""
     };
   }
 
+  componentDidMount() {
+    const id  = localStorage.getItem('userId')
+    this.setState({
+      user_id: id,
+    });
+  }
 
   handlerChange = event => {
     this.setState({ [event.target.id]: event.target.value });
@@ -25,15 +32,18 @@ export class ProjectForm extends Component {
       projectName: this.state.projectName,
       projectType: this.state.projectType,
       description: this.state.description,
-      fundingAmount: this.state.fundingAmount
+      fundingAmount: this.state.fundingAmount,
+      user_id: this.state.user_id
     });
     this.setState({
       projectName: "",
       projectType: "",
       description: "",
-      fundingAmount: ""
+      fundingAmount: "",
+      user_id:""
     });
   };
+  
   render() {
     return (
       <form onSubmit={this.formSubmit}>
@@ -71,5 +81,5 @@ export class ProjectForm extends Component {
   }
 }
 
-export default connect(null, { addingProject})(ProjectForm);
+export default connect(null, { addingProject, fetchUsersProjects})(ProjectForm);
 
