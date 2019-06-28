@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { fetchProjects } from "../../actions";
 import NavBar from "./NavBar";
 import Footer from "./Footer";
-import UserForm from "../Users/UserForm";
+import UserForm from "../users/UserForm";
 import styled from "styled-components";
 import { Card } from 'semantic-ui-react'
 

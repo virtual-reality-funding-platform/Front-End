@@ -9,11 +9,12 @@ export class UserProjects extends Component {
         this.props.fetchUsersProjects(id);
       }
 
-      handlerDelete = (event,id) =>{
+      handlerDelete = (event,id) => {
         event.preventDefault();
         this.props.deleteProject(id);
     }
       render() {
+        console.log('My props', this.props);
         return (
           <div>
             {this.props.projectsByUser.map(project => {
