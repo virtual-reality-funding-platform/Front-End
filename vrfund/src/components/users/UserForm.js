@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { addingUser } from "../../actions";
-import { Button, Checkbox, Form } from "semantic-ui-react";
+import { Button, Form } from "semantic-ui-react";
 import styled from "styled-components";
+import { withRouter } from "react-router-dom";
+
 // import image from '../../images/small.jpg'
 
 const Section = styled.section`
@@ -48,6 +50,7 @@ export class UserForm extends Component {
     this.aboutRef.current.value = "";
     this.usernameRef.current.value = "";
     this.passwordRef.current.value = "";
+    this.props.history.push('/users');
   };
 
   render() {
@@ -56,7 +59,7 @@ export class UserForm extends Component {
         <div className="text"> 
         <div>  We're  here for you, you just <strong>build</strong>,  you <strong>pitch</strong>, and we provide the fund to <strong>grow </strong>and <strong>scale</strong> your idea. <br/>
          <Button primary>Log In</Button>
- </div>
+        </div>
         </div>
         <section className="registration">
         <h4>Create your account to get started!</h4>
@@ -81,13 +84,6 @@ export class UserForm extends Component {
               <input ref={this.passwordRef} type="text" placeholder="enter your password"/>
             </Form.Field>
 
-            <Form.Field>
-              <em>Confirm Password</em>
-              <input ref={this.passwordRef} type="text" placeholder="confirm your username"/>
-            </Form.Field>
-            <Form.Field>
-              <Checkbox label="I agree to the Terms and Conditions" />
-            </Form.Field>
             <Button basic color='blue' onClick={this.onAddUser}>Get Started!</Button>
           </Form>
         </section>
@@ -99,4 +95,4 @@ export class UserForm extends Component {
 export default connect(
   null,
   { addingUser }
-)(UserForm);
+)(withRouter(UserForm));

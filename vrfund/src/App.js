@@ -3,8 +3,7 @@ import UserContainer from "./components/Users/UserContainer";
 import Homepage from "./components/Homepage/Homepage";
 import Login from './components/Auth/Login';
 import { BrowserRouter, Route, Redirect } from "react-router-dom";
-// import { Layout } from './components/Layout';
-// import { Container } from 'semantic-ui-react';
+
 
 class App extends Component {
   render() {

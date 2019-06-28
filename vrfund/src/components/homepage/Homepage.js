@@ -5,7 +5,7 @@ import NavBar from "./NavBar";
 import Footer from "./Footer";
 import UserForm from "../Users/UserForm";
 import styled from "styled-components";
-import { Card, Icon } from 'semantic-ui-react'
+import { Card } from 'semantic-ui-react'
 
 
 const Wrapper = styled.section`

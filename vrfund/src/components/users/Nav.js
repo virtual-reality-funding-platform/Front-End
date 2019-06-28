@@ -1,14 +1,13 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { Input, Menu } from "semantic-ui-react";
+import { Menu } from "semantic-ui-react";
 import styled from "styled-components";
-import './Homepage.css'
 
 const Div = styled.div`
   color: #fff;
 `;
 
-const NavBar = () => (
+const Nav = () => (
   <Div>
     <Menu className="menu">
       <Menu.Item>
@@ -22,14 +21,11 @@ const NavBar = () => (
         </NavLink>
       </Menu.Item>
       <Menu.Item>
-        <NavLink to="/">How It Works</NavLink>
+        <NavLink to="/projects/add">Create Project</NavLink>
       </Menu.Item>
       <Menu.Menu position="right">
         <Menu.Item>
-          <Input icon="search" placeholder="Search..." />
-        </Menu.Item>
-        <Menu.Item>
-          <NavLink to="/login">Login</NavLink>
+          <NavLink to="/login">Logout</NavLink>
         </Menu.Item>
         <Menu.Item name="" />
       </Menu.Menu>
@@ -37,4 +33,4 @@ const NavBar = () => (
   </Div>
 );
 
-export default NavBar;
+export default Nav;
