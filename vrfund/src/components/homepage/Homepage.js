@@ -13,6 +13,18 @@ width: 100%;
 
 `;
 
+const ProjectList = styled.div`
+display: flex;
+justify-content: space-evenly;
+
+ProjectList {
+  width: 33%;
+  padding: 0 3rem;
+  margin: 1rem 2rem;
+}
+
+`;
+
 export class Homepage extends Component {
   componentDidMount() {
     this.props.fetchProjects();
@@ -30,11 +42,11 @@ export class Homepage extends Component {
           </div>
         </Wrapper>
 
-        <div className="home-projects-list">
+        <ProjectList className="home-project-list">
           {this.props.projectsList.map(project => {
             return (
               <Card >
-              <div key={project.id}>
+              <div  className="project-list" key={project.id}>
                 <Card.Content><h3>{project.projectName} </h3></Card.Content>
                 <br />
                 <Card.Content><em>Types</em> <strong>{project.projectType}</strong> <br /></Card.Content>
@@ -47,7 +59,7 @@ export class Homepage extends Component {
               
             );
           })}
-        </div>
+        </ProjectList>
         <Footer />
       </div>
     );
