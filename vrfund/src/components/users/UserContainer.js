@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import NavBar from "./NavBar";
+import NavBar from "./Nav";
 import { Route } from "react-router-dom";
 import UserProjects from "./UserProjects";
 import EditProjects from "./EditProjects";
-import ProjectForm from "../project/ProjectForm";
+import ProjectForm from "../Project/ProjectForm";
 import User from "./User";
 
 export class UserContainer extends Component {
@@ -12,14 +12,15 @@ export class UserContainer extends Component {
       <>
         <NavBar />
         <User />
-        <ProjectForm />
+        
         <Route
           path="/"
           render={props => {
-            return <UserProjects />;
+            return <UserProjects {...props} />;
           }}
         />
-        <Route path="/projects/edit/:id" component={EditProjects} />
+        <ProjectForm />
+        <Route  path="/projects/edit/:id" component={EditProjects} />
       </>
     );
   }

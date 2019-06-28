@@ -1,16 +1,14 @@
 import React, { Component } from "react";
-import UserContainer from "./components/users/UserContainer";
-import Homepage from "./components/homepage/Homepage";
-import Login from './components/auth/Login';
+import UserContainer from "./components/Users/UserContainer";
+import Homepage from "./components/Homepage/Homepage";
+import Login from './components/Auth/Login';
 import { BrowserRouter, Route, Redirect } from "react-router-dom";
-// import { Layout } from './components/Layout';
-import { Container } from 'semantic-ui-react';
+
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-      <Container>
         {/* <Layout> */}
           <BrowserRouter>
           <Route exact path="/" component={Homepage} />
@@ -31,7 +29,6 @@ class App extends Component {
             <Route path="/login" component={Login} />
           </BrowserRouter>
         {/* </Layout> */}
-      </Container>
       </div>
     );
   }

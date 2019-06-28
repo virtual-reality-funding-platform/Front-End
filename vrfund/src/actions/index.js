@@ -52,7 +52,6 @@ export const login = (username, password, history) => dispatch => {
       .then(res => {
         localStorage.setItem('token', res.data.token);
         localStorage.setItem('userId', res.data.user.id);
-        console.log(res.data.user.id);
         if (localStorage.getItem('token')) {
           history.history.push('/users')
           }

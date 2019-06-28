@@ -2,6 +2,19 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { addingProject, fetchUsersProjects } from "../../actions";
+import { Button, Form } from 'semantic-ui-react';
+import styled from "styled-components";
+
+
+const Wrapper = styled.div`
+width: 40%;
+margin: 0 auto;
+line-height: 30px;
+.btn {
+  margin: 15px 0
+}
+`;
+
 
 export class ProjectForm extends Component {
   constructor(props) {
@@ -46,37 +59,54 @@ export class ProjectForm extends Component {
   
   render() {
     return (
-      <form onSubmit={this.formSubmit}>
+      <Wrapper>
+      <Form>
+        <form onSubmit={this.formSubmit}>
         <p>Project Name</p>
+        <Form.Group inline>
         <input
           id="projectName"
           onChange={this.handlerChange}
           placeholder="enter project name"
           value={this.state.projectName}
         />
+        </Form.Group>
         <p>Project Type</p>
+        <Form.Group inline>
         <input
           id="projectType"
           onChange={this.handlerChange}
           placeholder="enter project type"
           value={this.state.projectType}
         />
+        </Form.Group>
+        
         <p>Description</p>
+        <Form.Group inline>
         <input
           id="description"
           onChange={this.handlerChange}
           placeholder="enter the description"
           value={this.state.description}
         />
-         <p>Funding Amount</p>
+        </Form.Group>
+
+        <p>Funding Amount</p>
+        <Form.Group inline>
         <input
           id="fundingAmount"
           onChange={this.handlerChange}
           placeholder="enter project amount"
           value={this.state.fundingAmount}
         />
-        <button>Create Project</button>
+        </Form.Group>
+        <div>
+        <Button>Create Project</Button>
+        </div>
       </form>
+      </Form>
+      </Wrapper>
+      
     );
   }
 }
